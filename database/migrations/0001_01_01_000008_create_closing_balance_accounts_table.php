@@ -23,6 +23,6 @@ return new class() extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('jurnal');
+        Schema::dropIfExists('closing_balance_accounts');
     }
 };
