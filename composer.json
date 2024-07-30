@@ -25,6 +25,8 @@
   },
   "autoload": {
     "psr-4": {
+      "Ednar28\\Accounting\\Seeders\\": "database/seeders",
+      "Ednar28\\Accounting\\Database\\Factories\\": "database/factories",
       "Ednar28\\Accounting\\": "src"
     }
   },
