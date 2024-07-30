@@ -31,6 +31,17 @@ class InitialBalance extends Model
     }
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'debit',
+        'credit',
+        'chart_of_account_id',
+    ];
+
+    /**
      * Get a chart of account.
      */
     public function chartOfAccount(): BelongsTo

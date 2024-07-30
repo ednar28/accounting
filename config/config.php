@@ -1,8 +1,5 @@
 <?php
 
-/*
- * You can place your custom package configuration in here.
- */
 return [
     /*
     |--------------------------------------------------------------------------
@@ -10,7 +7,7 @@ return [
     |--------------------------------------------------------------------------
     | upcoming
     */
-    'coa_categories' => [
+    'seeder_coa_categories' => [
         'Aset' => 'debit',
         'Liabilitas' => 'credit',
         'Ekuitas' => 'credit',
@@ -24,7 +21,7 @@ return [
   |--------------------------------------------------------------------------
   | upcoming
   */
-    'coa' => [
+    'seeder_coa' => [
         [
             'coa_category' => 'Aset',
             'coa' => [

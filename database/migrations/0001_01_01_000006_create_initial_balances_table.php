@@ -12,7 +12,7 @@ return new class() extends Migration {
     {
         Schema::create('initial_balances', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('chart_of_account_id')->constrained();
+            $table->foreignId('chart_of_account_id')->unique()->constrained();
             $table->unsignedInteger('debit');
             $table->unsignedInteger('credit');
             $table->timestamps();

@@ -3,7 +3,9 @@
 namespace Ednar28\Accounting\Models;
 
 use Carbon\Carbon;
+use Ednar28\Accounting\Database\Factories\ChartOfAccountFactory;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -23,6 +25,16 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class ChartOfAccount extends Model
 {
+    use HasFactory;
+
+    /**
+     * Create a new factory instance for the model.
+     */
+    protected static function newFactory()
+    {
+        return ChartOfAccountFactory::new();
+    }
+
     /**
      * Get a category.
      */
@@ -36,6 +48,14 @@ class ChartOfAccount extends Model
      */
     public function parent(): BelongsTo
     {
+        return $this->directParent()->with(['parent']);
+    }
+
+    /**
+     * Get a parent.
+     */
+    public function directParent(): BelongsTo
+    {
         return $this->belongsTo(ChartOfAccount::class, 'parent_id');
     }
 
@@ -44,6 +64,14 @@ class ChartOfAccount extends Model
      */
     public function children(): HasMany
     {
-        return $this->hasMany(ChartOfAccount::class, 'parent_id');
+        return $this->directChildren()->with(['children']);
+    }
+
+    /**
+     * Get all children.
+     */
+    public function directChildren(): HasMany
+    {
+        return $this->hasMany(ChartOfAccount::class, 'parent_id')->orderBy('code');
     }
 }

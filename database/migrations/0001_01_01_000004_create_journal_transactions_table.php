@@ -12,10 +12,11 @@ return new class() extends Migration {
     {
         Schema::create('journal_transactions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('created_by_id')->nullable()->constrained('users')->nullOnDelete();
             $table->morphs('modelable');
             $table->string('description');
-            $table->unsignedInteger('total_debit');
-            $table->unsignedInteger('total_credit');
+            $table->unsignedInteger('total_debit')->default(0);
+            $table->unsignedInteger('total_credit')->default(0);
             $table->date('transaction_date');
             $table->timestamps();
         });
